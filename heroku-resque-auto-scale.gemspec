@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "heroku-resque-auto-scale.gemspec",
     "lib/heroku-resque-auto-scale.rb",
     "test/helper.rb",
     "test/test_heroku-resque-auto-scale.rb"
