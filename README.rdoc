@@ -2,8 +2,8 @@
 
 Auto scale your resque workers on Heroku. Original code by darkhelmet:
 
-  - http://blog.darkhax.com/2010/07/30/auto-scale-your-resque-workers-on-heroku
-  - https://gist.github.com/501160
+* http://blog.darkhax.com/2010/07/30/auto-scale-your-resque-workers-on-heroku
+* https://gist.github.com/501160
 
 I just bundled it into a gem for easy inclusion into other projects.
 
