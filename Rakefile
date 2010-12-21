@@ -15,8 +15,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "heroku-resque-auto-scale"
   gem.homepage = "http://github.com/mirthlab/heroku-resque-auto-scale"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Auto scale your resque workers on Heroku.}
+  gem.description = %Q{Auto scale your resque workers on Heroku.}
   gem.email = "mark@mirthlab.com"
   gem.authors = ["Mark Quezada"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,

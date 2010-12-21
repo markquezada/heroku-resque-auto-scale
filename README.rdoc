@@ -1,6 +1,23 @@
 = heroku-resque-auto-scale
 
-Description goes here.
+Auto scale your resque workers on Heroku. Original code by darkhelmet:
+
+http://blog.darkhax.com/2010/07/30/auto-scale-your-resque-workers-on-heroku
+https://gist.github.com/501160
+
+I just bundled it into a gem for easy inclusion into other projects.
+
+= Usage
+
+Once the gem is installed, simply extend your job class as follows:
+
+  class ScalingJob
+    extend HerokuResqueAutoScale if Rails.env.production? # only extend in production
+
+    def self.perform
+      # Do something long running
+    end
+  end
 
 == Contributing to heroku-resque-auto-scale
  
