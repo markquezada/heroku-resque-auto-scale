@@ -46,5 +46,5 @@ DEPENDENCIES
   heroku
   jeweler (~> 1.5.2)
   rcov
-  resque (>= 1.10.0)
+  resque (~> 1.10.0)
   shoulda
