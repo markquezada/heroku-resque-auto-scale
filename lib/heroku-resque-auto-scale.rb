@@ -10,7 +10,7 @@ module HerokuResqueAutoScale
       end
 
       def workers=(qty)
-        @@heroku.set_workers(ENV['HEROKU_APP'], qty)
+        @@heroku.ps_scale(ENV['HEROKU_APP'], :type => :worker, :qty => qty)
       end
 
       def job_count
