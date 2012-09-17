@@ -10,18 +10,23 @@ module HerokuResqueAutoScale
       end
 
       def workers=(qty)
-        @@heroku.set_workers(ENV['HEROKU_APP'], qty)
+        @@heroku.ps_scale(ENV['HEROKU_APP'], :type => :worker, :qty => qty)
       end
 
       def job_count
         Resque.info[:pending].to_i
       end
+
+      def working_job_count
+        Resque.info[:working].to_i
+      end
     end
   end
 
   def after_perform_scale_down(*args)
-    # Nothing fancy, just shut everything down if we have no jobs
-    Scaler.workers = 0 if Scaler.job_count.zero?
+    # Nothing fancy, just shut everything down if we have no pending jobs
+    # and one working job (which is this job)
+    Scaler.workers = 0 if Scaler.job_count.zero? && Scaler.working_job_count == 1
   end
 
   def after_enqueue_scale_up(*args)
