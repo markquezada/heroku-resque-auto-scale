@@ -27,6 +27,8 @@ You can test when executed this :
 
 HEROKU_API_KEY=your_api_key HEROKU_APP_NAME=your_app_name *** bundle exec *** rake spec
 
+You can changes thresholds into scaler_config.yml
+
 I just bundled it into a gem for easy inclusion into other projects.
 
 = Usage
