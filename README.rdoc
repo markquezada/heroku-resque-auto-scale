@@ -5,6 +5,28 @@ Auto scale your resque workers on Heroku. Original code by darkhelmet:
 * http://blog.darkhax.com/2010/07/30/auto-scale-your-resque-workers-on-heroku
 * https://gist.github.com/501160
 
+Modify by joel => https://github.com/joel
+
+On fork => https://github.com/joel/heroku-resque-auto-scale
+
+Principals changes :
+
+* I've switched Jeweler Gem generator to simpel Bundler gem generator
+* I've switched to Rspec from TestUnit
+* I've switched to HerokuAPI Gem instead of Heroku Client Gem
+
+Configuration :
+
+You need to defined two vars for your heroku :
+
+Go to your https://api.heroku.com/account
+heroku config:add HEROKU_API_KEY=your_api_key -a your_app_name
+heroku config:add HEROKU_APP_NAME=your_app_name -a your_app_name
+
+You can test when executed this :
+
+HEROKU_API_KEY=your_api_key HEROKU_APP_NAME=your_app_name *** bundle exec *** rake spec
+
 I just bundled it into a gem for easy inclusion into other projects.
 
 = Usage
@@ -20,7 +42,7 @@ Once the gem is installed, simply extend your job class as follows:
   end
 
 == Contributing to heroku-resque-auto-scale
- 
+
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
 * Fork the project
