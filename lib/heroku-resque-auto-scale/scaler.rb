@@ -7,10 +7,12 @@ module HerokuResqueAutoScale
       @@heroku = Heroku::API.new(api_key: ENV['HEROKU_API_KEY'])
       
       def workers
+        return nil unless authorised? 
         @@heroku.get_app(ENV['HEROKU_APP_NAME']).body['workers'].to_i
       end
 
       def workers=(qty)
+        return unless authorised? 
         @@heroku.post_ps_scale(ENV['HEROKU_APP_NAME'], 'worker', qty.to_s)
       end
 
@@ -21,6 +23,13 @@ module HerokuResqueAutoScale
       def working_job_count
         Resque.info[:working].to_i
       end
+      
+      private
+      
+      def authorised?
+        HerokuResqueAutoScale::Config.thresholds.include? Rails.env.to_s
+      end
+        
     end
   end
 

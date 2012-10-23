@@ -19,6 +19,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'resque'
   gem.add_runtime_dependency 'heroku-api'
   
+  gem.add_development_dependency 'rails'
   gem.add_development_dependency 'rspec'
   gem.add_development_dependency 'webmock'
   gem.add_development_dependency 'rake'

@@ -3,6 +3,8 @@ require 'spec_helper'
 # HEROKU_API_KEY=your_api_key HEROKU_APP_NAME=your_app_name bundle exec rake spec
 describe HerokuResqueAutoScale::Scaler do
 
+  before { HerokuResqueAutoScale::Scaler.stub authorised?: true }
+  
   context 'with stub response' do
     before do
       stub_request(:get, "https://api.heroku.com/apps/your_app_name").

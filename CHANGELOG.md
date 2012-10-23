@@ -1,3 +1,8 @@
+# Changelog  VERSION = '0.1.4'
+
+* Add protection execution for determinate environments, defaults 'production'
+* Add possibilité of override config on your project
+
 # Changelog  VERSION = '0.1.3'
 
 ## Principals changes :

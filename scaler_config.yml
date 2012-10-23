@@ -9,3 +9,6 @@ thresholds:
   :job_count: 40
 - :workers: 5
   :job_count: 60
+environments:
+  - production
+  - staging
