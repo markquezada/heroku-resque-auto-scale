@@ -1,6 +1,6 @@
 bundle && HEROKU_API_KEY=your_api_key HEROKU_APP_NAME=your_app_name bundle exec rake spec
 gem build heroku-resque-auto-scale.gemspec 
-git tag -a v0.1.4 -m 'version 0.1.4'
+git tag -a v0.1.5 -m 'version 0.1.5'
 git push --tags
-gem push heroku-resque-auto-scale-0.1.4.gem 
+gem push heroku-resque-auto-scale-0.1.5.gem 
 git push origin master

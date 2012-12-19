@@ -1,3 +1,7 @@
+# Changelog  VERSION = '0.1.5'
+
+* Add safe mode for Heroku
+
 # Changelog  VERSION = '0.1.4'
 
 * Add protection execution for determinate environments, defaults 'production'

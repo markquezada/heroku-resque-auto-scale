@@ -12,7 +12,10 @@ module HerokuResqueAutoScale
       end
 
       def workers=(qty)
-        return unless authorised? 
+        return unless authorised?
+        if safe_mode? and down? qty
+          return unless safer?
+        end
         @@heroku.post_ps_scale(ENV['HEROKU_APP_NAME'], 'worker', qty.to_s)
       end
 
@@ -22,6 +25,20 @@ module HerokuResqueAutoScale
 
       def working_job_count
         Resque.info[:working].to_i
+      end
+      
+      protected
+      
+      def down? qty
+        qty < workers 
+      end
+      
+      def safe_mode?
+        ENV['SAFE_MODE'] and ENV['SAFE_MODE'] == 'true'
+      end
+      
+      def safer?
+        job_count + working_job_count == 0
       end
       
       private
