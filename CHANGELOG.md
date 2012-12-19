@@ -1,3 +1,7 @@
+# Changelog  VERSION = '0.1.6'
+
+* Changes name from heroku-resque-auto-scale to heroku-resque-workers-scaler
+
 # Changelog  VERSION = '0.1.5'
 
 * Add safe mode for Heroku
