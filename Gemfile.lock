@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    heroku-resque-auto-scale (0.1.3)
+    heroku-resque-auto-scale (0.1.4)
       heroku-api
       resque
 

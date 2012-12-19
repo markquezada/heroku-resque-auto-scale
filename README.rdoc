@@ -27,7 +27,7 @@ You can test when executed this :
 
 HEROKU_API_KEY=your_api_key HEROKU_APP_NAME=your_app_name *** bundle exec *** rake spec
 
-You can changes thresholds into scaler_config.yml
+You can changes thresholds and environments of execution into scaler_config.yml or on your project on config/scaler_config.yml
 
 I just bundled it into a gem for easy inclusion into other projects.
 
@@ -36,7 +36,7 @@ I just bundled it into a gem for easy inclusion into other projects.
 Once the gem is installed, simply extend your job class as follows:
 
   class ScalingJob
-    extend HerokuResqueAutoScale if Rails.env.production? # only extend in production
+    extend HerokuResqueAutoScale
 
     def self.perform
       # Do something long running
