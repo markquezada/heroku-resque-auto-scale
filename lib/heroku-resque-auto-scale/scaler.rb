@@ -34,9 +34,11 @@ module HerokuResqueAutoScale
   end
 
   def after_perform_scale_down(*args)
-    # Nothing fancy, just shut everything down if we have no pending jobs
-    # and one working job (which is this job)
-    Scaler.workers = 0 if Scaler.job_count.zero? && Scaler.working_job_count == 1
+    scale_down
+  end
+
+  def on_failure_scale_down(exception, *args)
+    scale_down
   end
 
   def after_enqueue_scale_up(*args)
@@ -53,5 +55,13 @@ module HerokuResqueAutoScale
         break # We've set or ensured that the worker count is high enough
       end
     end
+  end
+  
+  private
+
+  def scale_down
+    # Nothing fancy, just shut everything down if we have no pending jobs
+    # and one working job (which is this job)
+    Scaler.workers = 0 if Scaler.job_count.zero? && Scaler.working_job_count == 1
   end
 end
