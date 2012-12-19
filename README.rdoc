@@ -1,4 +1,4 @@
-# heroku-resque-auto-scale
+# heroku-resque-workers-scaler
 
 Auto scale your resque workers on Heroku. Original code by darkhelmet:
 
@@ -7,7 +7,7 @@ Auto scale your resque workers on Heroku. Original code by darkhelmet:
 
 Modify by joel => https://github.com/joel
 
-On fork => https://github.com/joel/heroku-resque-auto-scale
+On fork => https://github.com/joel/heroku-resque-workers-scaler
 
 ### Principals changes :
 
@@ -50,7 +50,7 @@ When you ask heroku for scale down workers, heroku send SIGTERM and wait 4 secon
 ```
 	heroku config:add SAFE_MODE=true -a your_app_name
 ```
-## Contributing to heroku-resque-auto-scale
+## Contributing to heroku-resque-workers-scaler
 
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it

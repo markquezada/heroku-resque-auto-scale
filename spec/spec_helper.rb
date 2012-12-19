@@ -3,7 +3,7 @@ $:.unshift File.expand_path('../../lib', __FILE__)
 
 require 'rspec'
 require 'webmock/rspec'
-require 'heroku-resque-auto-scale'
+require 'heroku-resque-workers-scaler'
 require 'json'
 require 'resque'
 require 'rails'

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    heroku-resque-auto-scale (0.1.5)
+    heroku-resque-workers-scaler (0.1.5)
       heroku-api
       resque
 
@@ -122,7 +122,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  heroku-resque-auto-scale!
+  heroku-resque-workers-scaler!
   rails
   rake
   rspec
