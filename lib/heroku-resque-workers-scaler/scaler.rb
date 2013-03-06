@@ -7,12 +7,12 @@ module HerokuResqueAutoScale
       @@heroku = Heroku::API.new(api_key: ENV['HEROKU_API_KEY'])
       
       def workers
-        return nil unless authorised? 
+        return nil unless authorized? 
         @@heroku.get_app(ENV['HEROKU_APP_NAME']).body['workers'].to_i
       end
 
       def workers=(qty)
-        return unless authorised?
+        return unless authorized?
         if safe_mode? and down? qty
           return unless safer?
         end
@@ -43,8 +43,8 @@ module HerokuResqueAutoScale
       
       private
       
-      def authorised?
-        HerokuResqueAutoScale::Config.thresholds.include? Rails.env.to_s
+      def authorized?
+        HerokuResqueAutoScale::Config.environments.include? Rails.env.to_s
       end
         
     end
