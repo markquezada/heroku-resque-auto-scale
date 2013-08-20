@@ -7,7 +7,7 @@ module HerokuResqueAutoScale
       @@heroku = Heroku::API.new(api_key: ENV['HEROKU_API_KEY'])
       
       def workers
-        return nil unless authorized? 
+        return -1 unless authorized? 
         @@heroku.get_app(ENV['HEROKU_APP_NAME']).body['workers'].to_i
       end
 
