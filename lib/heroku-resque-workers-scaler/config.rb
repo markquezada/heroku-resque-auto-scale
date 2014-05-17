@@ -25,11 +25,11 @@ module HerokuResqueAutoScale
     end
 
     def worker_name
-      @environments ||= begin
+      @worker_name ||= begin
         if config_file? && config.has_key?('worker_name')
           config['worker_name']
         else
-          ['worker']
+          'worker'
         end
       end
     end
