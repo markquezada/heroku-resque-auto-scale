@@ -6,7 +6,7 @@ module HerokuResqueAutoScale
     
     def thresholds
       @thresholds ||= begin
-        if config_file?
+        if config_file? && config.has_key?('thresholds')
           config['thresholds']
         else
           [{workers:1,job_count:1},{workers:2,job_count:15},{workers:3,job_count:25},{workers:4,job_count:40},{workers:5,job_count:60}]
@@ -16,10 +16,20 @@ module HerokuResqueAutoScale
     
     def environments
       @environments ||= begin
-        if config_file?
+        if config_file? && config.has_key?('environments')
           config['environments']
         else
           [ 'production' ]
+        end
+      end
+    end
+
+    def worker_name
+      @environments ||= begin
+        if config_file? && config.has_key?('worker_name')
+          config['worker_name']
+        else
+          ['worker']
         end
       end
     end
