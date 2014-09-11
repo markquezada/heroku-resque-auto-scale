@@ -1,3 +1,7 @@
+# Changelog  VERSION = '0.1.7'
+
+[Fullcahnges](https://github.com/joel/heroku-resque-workers-scaler/pull/4)
+
 # Changelog  VERSION = '0.1.6'
 
 * Changes name from heroku-resque-auto-scale to heroku-resque-workers-scaler
