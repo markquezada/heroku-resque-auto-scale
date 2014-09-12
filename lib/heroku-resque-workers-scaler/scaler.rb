@@ -2,12 +2,12 @@ require 'heroku-api'
 
 module HerokuResqueAutoScale
   module Scaler
-    
+
     class << self
       @@heroku = Heroku::API.new(api_key: ENV['HEROKU_API_KEY'])
-      
+
       def workers
-        return nil unless authorised? 
+        return nil unless authorised?
         @@heroku.get_app(ENV['HEROKU_APP_NAME']).body['workers'].to_i
       end
 
@@ -16,7 +16,7 @@ module HerokuResqueAutoScale
         if safe_mode? and down? qty
           return unless safer?
         end
-        @@heroku.post_ps_scale(ENV['HEROKU_APP_NAME'], 'worker', qty.to_s)
+        @@heroku.post_ps_scale(ENV['HEROKU_APP_NAME'], 'worker', qty.to_i)
       end
 
       def job_count
@@ -26,27 +26,27 @@ module HerokuResqueAutoScale
       def working_job_count
         Resque.info[:working].to_i
       end
-      
+
       protected
-      
+
       def down? qty
-        qty < workers 
+        qty < workers
       end
-      
+
       def safe_mode?
         ENV['SAFE_MODE'] and ENV['SAFE_MODE'] == 'true'
       end
-      
+
       def safer?
         job_count + working_job_count == 0
       end
-      
+
       private
-      
+
       def authorised?
         HerokuResqueAutoScale::Config.environments.include? Rails.env.to_s
       end
-        
+
     end
   end
 
@@ -73,7 +73,7 @@ module HerokuResqueAutoScale
       end
     end
   end
-  
+
   private
 
   def scale_down
