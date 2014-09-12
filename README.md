@@ -28,8 +28,19 @@ You can test when executed this :
 ```
 	HEROKU_API_KEY=your_api_key HEROKU_APP_NAME=your_app_name *** bundle exec *** rake spec
 ```
-You can changes thresholds and environments of execution into scaler_config.yml or on your project on config/scaler_config.yml
+You can change the thresholds, environments of execution and the name of your worker process in your project on config/scaler_config.yml
 
+Exmple YAML file contents:
+
+    thresholds:
+    - :workers: 1
+      :job_count: 1
+    - :workers: 2
+      :job_count: 15
+    environments:
+      - production
+    worker_name: resque
+    
 I just bundled it into a gem for easy inclusion into other projects.
 
 #### Usage

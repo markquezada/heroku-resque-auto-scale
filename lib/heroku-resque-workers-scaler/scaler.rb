@@ -1,22 +1,27 @@
-require 'heroku-api'
+require 'platform-api'
 
 module HerokuResqueAutoScale
   module Scaler
 
     class << self
-      @@heroku = Heroku::API.new(api_key: ENV['HEROKU_API_KEY'])
+      @@heroku = PlatformAPI.connect(ENV['HEROKU_API_KEY'])
 
       def workers
-        return nil unless authorised?
-        @@heroku.get_app(ENV['HEROKU_APP_NAME']).body['workers'].to_i
+        return -1 unless authorized?
+        result = @@heroku.formation.info(app_name, worker_name)
+        result['quantity']
       end
 
-      def workers=(qty)
-        return unless authorised?
-        if safe_mode? and down? qty
-          return unless safer?
+      def workers=(quantity)
+        return unless authorized?
+
+        quantity = quantity.to_i
+
+        if safe_mode? and setting_this_number_of_workers_will_scale_down? quantity
+          return unless all_jobs_hve_been_processed?
         end
-        @@heroku.post_ps_scale(ENV['HEROKU_APP_NAME'], 'worker', qty.to_i)
+        result = @@heroku.formation.update(app_name, worker_name, {quantity: quantity})
+        result['quantity'] == quantity
       end
 
       def job_count
@@ -29,22 +34,30 @@ module HerokuResqueAutoScale
 
       protected
 
-      def down? qty
-        qty < workers
+      def app_name
+        ENV['HEROKU_APP_NAME']
+      end
+
+      def setting_this_number_of_workers_will_scale_down? quantity
+        quantity < workers
       end
 
       def safe_mode?
         ENV['SAFE_MODE'] and ENV['SAFE_MODE'] == 'true'
       end
 
-      def safer?
+      def all_jobs_hve_been_processed?
         job_count + working_job_count == 0
       end
 
       private
 
-      def authorised?
+      def authorized?
         HerokuResqueAutoScale::Config.environments.include? Rails.env.to_s
+      end
+
+      def worker_name
+        HerokuResqueAutoScale::Config.worker_name
       end
 
     end
