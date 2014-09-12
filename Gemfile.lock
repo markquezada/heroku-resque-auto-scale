@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    heroku-resque-workers-scaler (0.1.6)
+    heroku-resque-workers-scaler (0.1.9)
       platform-api
       resque
 
@@ -41,8 +41,8 @@ GEM
       safe_yaml (~> 1.0.0)
     diff-lcs (1.2.5)
     erubis (2.7.0)
-    excon (0.33.0)
-    heroics (0.0.9)
+    excon (0.39.5)
+    heroics (0.0.12)
       erubis (~> 2.7.0)
       excon
       moneta
@@ -56,12 +56,12 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.25.1)
     minitest (5.3.4)
-    moneta (0.7.20)
+    moneta (0.8.0)
     mono_logger (1.1.0)
     multi_json (1.10.0)
     netrc (0.7.7)
-    platform-api (0.1.0)
-      heroics (~> 0.0.9)
+    platform-api (0.2.0)
+      heroics (~> 0.0.10)
     polyglot (0.3.4)
     psych (2.0.5)
     rack (1.5.2)
@@ -85,9 +85,9 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.3.2)
-    redis (3.0.7)
-    redis-namespace (1.4.1)
-      redis (~> 3.0.4)
+    redis (3.1.0)
+    redis-namespace (1.5.1)
+      redis (~> 3.0, >= 3.0.4)
     resque (1.25.2)
       mono_logger (~> 1.0)
       multi_json (~> 1.0)
