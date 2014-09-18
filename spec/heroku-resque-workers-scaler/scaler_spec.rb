@@ -57,7 +57,7 @@ describe HerokuResqueAutoScale::Scaler do
         before { allow(HerokuResqueAutoScale::Scaler).to receive(:setting_this_number_of_workers_will_scale_down?) { true }}
 
         context 'when there are some jobs left to process' do
-          before { allow(HerokuResqueAutoScale::Scaler).to receive(:all_jobs_hve_been_processed?) { false }}
+          before { allow(HerokuResqueAutoScale::Scaler).to receive(:all_jobs_have_been_processed?) { false }}
 
           # it 'does not trigger the API call' do
           #   allow_any_instance_of(PlatformAPI::Client).to_not receive(:formation)
@@ -66,7 +66,7 @@ describe HerokuResqueAutoScale::Scaler do
         end
 
         context 'when there are no jobs left to process' do
-          before { allow(HerokuResqueAutoScale::Scaler).to receive(:all_jobs_hve_been_processed?) { true }}
+          before { allow(HerokuResqueAutoScale::Scaler).to receive(:all_jobs_have_been_processed?) { true }}
 
           describe 'should trigger action' do
             it 'does not trigger the API call' do
