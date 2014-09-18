@@ -15,19 +15,45 @@ On fork => https://github.com/joel/heroku-resque-workers-scaler
 * I've switched to Rspec from TestUnit
 * I've switched to HerokuAPI Gem instead of Heroku Client Gem
 * Add safe mode for heroku
+* See CHANGELOG
 
 ### Configuration :
 
 You need to defined two vars for your heroku :
 
-Go to your https://api.heroku.com/account
+`Go to your https://api.heroku.com/account`
+
+```
 heroku config:add HEROKU_API_KEY=your_api_key -a your_app_name
 heroku config:add HEROKU_APP_NAME=your_app_name -a your_app_name
+heroku config:add export SAFE_MODE=true -a your_app_name
+```
+
+## Run localy
 
 You can test when executed this :
+
 ```
-	HEROKU_API_KEY=your_api_key HEROKU_APP_NAME=your_app_name *** bundle exec *** rake spec
+export HEROKU_API_KEY=your_api_key
+export HEROKU_APP_NAME=your_app_name
+export SAFE_MODE=true
+export ENVIRONMENT=development
 ```
+open `irb`
+
+```
+irb -r heroku-resque-workers-scaler -I ./lib
+```
+play with commands
+```
+>> HerokuResqueAutoScale::Scaler.workers
+=> 0
+>> HerokuResqueAutoScale::Scaler.workers=1
+=> 1
+>> HerokuResqueAutoScale::Scaler.workers=0
+=> 0
+```
+
 You can change the thresholds, environments of execution and the name of your worker process in your project on config/scaler_config.yml
 
 Exmple YAML file contents:
@@ -40,7 +66,7 @@ Exmple YAML file contents:
     environments:
       - production
     worker_name: resque
-    
+
 I just bundled it into a gem for easy inclusion into other projects.
 
 #### Usage
@@ -75,4 +101,3 @@ When you ask heroku for scale down workers, heroku send SIGTERM and wait 4 secon
 
 Copyright (c) 2010 Mark Quezada. See LICENSE.txt for
 further details.
-
