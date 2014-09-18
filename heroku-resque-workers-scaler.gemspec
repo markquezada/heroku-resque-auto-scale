@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'platform-api', '~> 0.2.0'
 
   spec.add_development_dependency 'rails', '~> 4.1.6'
-  spec.add_development_dependency 'rspec'#, '~> 3.1.0'
+  spec.add_development_dependency 'rspec', '~> 3.1.0'
   spec.add_development_dependency 'webmock', '~> 1.18.0'
   spec.add_development_dependency 'rake', '~> 10.3.2'
   spec.add_development_dependency 'psych', '~> 2.0.6'
