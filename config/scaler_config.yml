@@ -12,3 +12,5 @@ thresholds:
 environments:
   - production
   - staging
+  - development
+worker_name: worker

@@ -1,3 +1,7 @@
+# Changelog  VERSION = '0.2.1'
+
+[Fullcahnges](https://github.com/joel/heroku-resque-workers-scaler/pull/7)
+
 # Changelog  VERSION = '0.2.0'
 
 [Fullcahnges](https://github.com/joel/heroku-resque-workers-scaler/pull/6)

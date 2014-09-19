@@ -8,21 +8,8 @@ describe HerokuResqueAutoScale::Config do
   end
 
   context 'using the supplied config file' do
-    it { HerokuResqueAutoScale::Config.thresholds.should be_instance_of Array }
-    it { HerokuResqueAutoScale::Config.environments.should eql ['production','staging'] }
-    it { HerokuResqueAutoScale::Config.worker_name.should eql 'worker' }
-  end
-
-  context 'with missing config values' do
-    before :each do
-      HerokuResqueAutoScale::Config.stub(:config).and_return({})
-    end
-
-    it { HerokuResqueAutoScale::Config.thresholds.should be_instance_of Array }
-    it { HerokuResqueAutoScale::Config.environments.should eql ['production'] }
-    it { HerokuResqueAutoScale::Config.worker_name.should eql 'worker' }
-
+    it { expect(HerokuResqueAutoScale::Config.thresholds).to be_instance_of Array }
+    it { expect(HerokuResqueAutoScale::Config.environments).to eql(['production','staging', 'development']) }
+    it { expect(HerokuResqueAutoScale::Config.worker_name).to eql 'worker' }
   end
 end
-  
-  

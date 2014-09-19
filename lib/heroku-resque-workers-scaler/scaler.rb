@@ -1,4 +1,5 @@
 require 'platform-api'
+require 'resque'
 
 module HerokuResqueAutoScale
   module Scaler
@@ -18,9 +19,9 @@ module HerokuResqueAutoScale
         quantity = quantity.to_i
 
         if safe_mode? and setting_this_number_of_workers_will_scale_down? quantity
-          return unless all_jobs_hve_been_processed?
+          return unless all_jobs_have_been_processed?
         end
-        result = @@heroku.formation.update(app_name, worker_name, {quantity: quantity})
+        result = @@heroku.formation.update(app_name, worker_name, { quantity: quantity })
         result['quantity'] == quantity
       end
 
@@ -46,14 +47,22 @@ module HerokuResqueAutoScale
         ENV['SAFE_MODE'] and ENV['SAFE_MODE'] == 'true'
       end
 
-      def all_jobs_hve_been_processed?
+      def all_jobs_have_been_processed?
         job_count + working_job_count == 0
       end
 
       private
 
       def authorized?
-        HerokuResqueAutoScale::Config.environments.include? Rails.env.to_s
+        HerokuResqueAutoScale::Config.environments.include? _environment
+      end
+
+      def _environment
+        if defined?(Rails)
+          Rails.env.to_s
+        else
+          ENV['ENVIRONMENT'] || 'test'
+        end
       end
 
       def worker_name
