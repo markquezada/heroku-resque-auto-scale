@@ -72,15 +72,23 @@ module HerokuResqueAutoScale
     end
   end
 
+  def log msg
+    puts msg
+    Rails.logger.info msg
+  end
+
   def after_perform_scale_down(*args)
+    log "after_perform_scale_down(*args)"
     scale_down
   end
 
   def on_failure_scale_down(exception, *args)
+    log "on_failure_scale_down(exception, *args)"
     scale_down
   end
 
   def after_enqueue_scale_up(*args)
+    log "after_enqueue_scale_up(*args)"
     case Config.mode
     when :thresholds
       Config.thresholds.reverse_each do |scale_info|
@@ -110,7 +118,7 @@ module HerokuResqueAutoScale
   def scale_down
     # Nothing fancy, just shut everything down if we have no pending jobs
     # and one working job (which is this job)
-    puts "Scaler.job_count=#{Scaler.job_count} | Scaler.working_job_count=#{Scaler.working_job_count}"
+    log "Scaler.job_count=#{Scaler.job_count} | Scaler.working_job_count=#{Scaler.working_job_count}"
     Scaler.workers = 0 if Scaler.job_count.zero? && Scaler.working_job_count <= 1
   end
 end
