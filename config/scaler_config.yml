@@ -1,3 +1,4 @@
+mode: :thresholds # :fit, :half, :third
 thresholds:
 - :workers: 1
   :job_count: 1

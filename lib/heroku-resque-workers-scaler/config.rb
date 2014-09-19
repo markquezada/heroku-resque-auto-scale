@@ -5,6 +5,10 @@ module HerokuResqueAutoScale
     extend self
 
     CONFIG_FILE_NAME = 'scaler_config.yml'
+    
+    def mode
+      @mode ||= config['mode']
+    end
 
     def thresholds
       @thresholds ||= config['thresholds']
