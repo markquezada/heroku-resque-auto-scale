@@ -54,7 +54,7 @@ describe HerokuResqueAutoScale::Scaler do
       before { allow(HerokuResqueAutoScale::Scaler).to receive(:safe_mode?) { true }}
 
       context 'when about to scale down' do
-        before { allow(HerokuResqueAutoScale::Scaler).to receive(:setting_this_number_of_workers_will_scale_down?) { true }}
+        before { allow(HerokuResqueAutoScale::Scaler).to receive(:scale_down?) { true }}
 
         context 'when there are some jobs left to process' do
           before { allow(HerokuResqueAutoScale::Scaler).to receive(:all_jobs_have_been_processed?) { false }}
