@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    heroku-resque-workers-scaler (0.3.0)
+    heroku-resque-workers-scaler (0.3.1)
       platform-api (~> 0.2.0)
       resque (~> 1.25.2)
 
