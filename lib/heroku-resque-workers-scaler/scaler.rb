@@ -107,6 +107,6 @@ module HerokuResqueAutoScale
   def scale_down
     # Nothing fancy, just shut everything down if we have no pending jobs
     # and one working job (which is this job)
-    Scaler.workers = 0 if Scaler.job_count.zero? && Scaler.working_job_count == 1
+    Scaler.workers = 0 if Scaler.job_count.zero? && Scaler.working_job_count.zero?
   end
 end
