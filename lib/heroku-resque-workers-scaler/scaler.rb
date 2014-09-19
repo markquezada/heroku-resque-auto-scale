@@ -18,11 +18,19 @@ module HerokuResqueAutoScale
 
         quantity = quantity.to_i
 
-        if safe_mode? and setting_this_number_of_workers_will_scale_down? quantity
-          return unless all_jobs_have_been_processed?
+        if safe_mode?
+          if scale_down? quantity
+            return false unless all_jobs_have_been_processed?
+          end
         end
+
         result = @@heroku.formation.update(app_name, worker_name, { quantity: quantity })
         result['quantity'] == quantity
+      end
+
+      def shut_down_workers!
+        @@heroku.formation.update(app_name, worker_name, { quantity: 0 })
+        nil
       end
 
       def job_count
@@ -39,7 +47,7 @@ module HerokuResqueAutoScale
         ENV['HEROKU_APP_NAME']
       end
 
-      def setting_this_number_of_workers_will_scale_down? quantity
+      def scale_down? quantity
         quantity < workers
       end
 
@@ -119,6 +127,6 @@ module HerokuResqueAutoScale
     # Nothing fancy, just shut everything down if we have no pending jobs
     # and one working job (which is this job)
     log "Scaler.job_count=#{Scaler.job_count} | Scaler.working_job_count=#{Scaler.working_job_count}"
-    Scaler.workers = 0 if Scaler.job_count.zero? && Scaler.working_job_count <= 1
+    Scaler.shut_down_workers! if Scaler.job_count.zero? && Scaler.working_job_count <= 1
   end
 end
