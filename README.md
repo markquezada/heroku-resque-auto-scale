@@ -1,3 +1,13 @@
+[![Code Climate](https://codeclimate.com/github/joel/heroku-resque-workers-scaler.png)](https://codeclimate.com/github/joel/heroku-resque-workers-scaler)
+
+[![Dependency Status](https://gemnasium.com/joel/heroku-resque-workers-scaler.png)](https://gemnasium.com/joel/heroku-resque-workers-scaler)
+
+[![Build Status](https://travis-ci.org/joel/heroku-resque-workers-scaler.png?branch=master)](https://travis-ci.org/joel/heroku-resque-workers-scaler) (Travis CI)
+
+[![Coverage Status](https://coveralls.io/repos/joel/heroku-resque-workers-scaler/badge.png)](https://coveralls.io/r/joel/heroku-resque-workers-scaler)
+
+[![Gem Version](https://badge.fury.io/rb/heroku-resque-workers-scaler.svg)](http://badge.fury.io/rb/heroku-resque-workers-scaler)
+
 # heroku-resque-workers-scaler
 
 Auto scale your resque workers on Heroku. Original code by darkhelmet:
