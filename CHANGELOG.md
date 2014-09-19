@@ -1,3 +1,12 @@
+# Changelog  VERSION = '0.3.0'
+* feature 
+  * Add another mode for thresholds
+  
+* bug fix
+  * fix size of working job count at ZERO instead of one
+
+[Fullcahnges](https://github.com/joel/heroku-resque-workers-scaler/pull/8)
+
 # Changelog  VERSION = '0.2.1'
 
 [Fullcahnges](https://github.com/joel/heroku-resque-workers-scaler/pull/7)

@@ -58,6 +58,7 @@ You can change the thresholds, environments of execution and the name of your wo
 
 Exmple YAML file contents:
 
+    mode: :thresholds # :fit, :half, :third
     thresholds:
     - :workers: 1
       :job_count: 1
@@ -66,6 +67,8 @@ Exmple YAML file contents:
     environments:
       - production
     worker_name: resque
+
+if you use `mode: :fit` the number of job is exactly the same of available worker, `:half` the number of worker is 1/2 of number of job in queue, and for `third` 1/3
 
 I just bundled it into a gem for easy inclusion into other projects.
 
