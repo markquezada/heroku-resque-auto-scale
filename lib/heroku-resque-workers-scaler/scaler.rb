@@ -10,6 +10,7 @@ module HerokuResqueAutoScale
       def workers
         return -1 unless authorized?
         begin
+          puts 'debug version'
           result = @@heroku.formation.info(app_name, worker_name)
           result['quantity']
         rescue Exception => e
