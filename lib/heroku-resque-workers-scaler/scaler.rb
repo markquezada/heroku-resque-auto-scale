@@ -60,7 +60,7 @@ module HerokuResqueAutoScale
       private
 
       def authorized?
-        HerokuResqueAutoScale::Config.environments.include? _environment
+        Config.environments.include? _environment
       end
 
       def _environment
@@ -72,7 +72,7 @@ module HerokuResqueAutoScale
       end
 
       def worker_name
-        HerokuResqueAutoScale::Config.worker_name
+        Config.worker_name
       end
 
     end
@@ -87,18 +87,27 @@ module HerokuResqueAutoScale
   end
 
   def after_enqueue_scale_up(*args)
-    HerokuResqueAutoScale::Config.thresholds.reverse_each do |scale_info|
-      # Run backwards so it gets set to the highest value first
-      # Otherwise if there were 70 jobs, it would get set to 1, then 2, then 3, etc
+    case Config.mode
+    when :thresholds
+      Config.thresholds.reverse_each do |scale_info|
+        # Run backwards so it gets set to the highest value first
+        # Otherwise if there were 70 jobs, it would get set to 1, then 2, then 3, etc
 
-      # If we have a job count greater than or equal to the job limit for this scale info
-      if Scaler.job_count >= scale_info[:job_count]
-        # Set the number of workers unless they are already set to a level we want. Don't scale down here!
-        if Scaler.workers <= scale_info[:workers]
-          Scaler.workers = scale_info[:workers]
+        # If we have a job count greater than or equal to the job limit for this scale info
+        if Scaler.job_count >= scale_info[:job_count]
+          # Set the number of workers unless they are already set to a level we want. Don't scale down here!
+          if Scaler.workers <= scale_info[:workers]
+            Scaler.workers = scale_info[:workers]
+          end
+          break # We've set or ensured that the worker count is high enough
         end
-        break # We've set or ensured that the worker count is high enough
       end
+    when :fit
+      Scaler.workers = Scaler.job_count
+    when :half
+      Scaler.workers = (Scaler.job_count/2)
+    when :third
+      Scaler.workers = (Scaler.job_count/3)
     end
   end
 
