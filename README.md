@@ -26,7 +26,7 @@ You need to defined two vars for your heroku :
 ```
 heroku config:add HEROKU_API_KEY=your_api_key -a your_app_name
 heroku config:add HEROKU_APP_NAME=your_app_name -a your_app_name
-heroku config:add export SAFE_MODE=true -a your_app_name
+heroku config:add SAFE_MODE=true -a your_app_name
 ```
 
 ## Run localy

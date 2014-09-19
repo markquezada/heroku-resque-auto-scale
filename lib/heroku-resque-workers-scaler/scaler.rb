@@ -9,8 +9,13 @@ module HerokuResqueAutoScale
 
       def workers
         return -1 unless authorized?
-        result = @@heroku.formation.info(app_name, worker_name)
-        result['quantity']
+        begin
+          result = @@heroku.formation.info(app_name, worker_name)
+          result['quantity']
+        rescue Exception => e
+          binding.pry rescue nil
+          raise
+        end
       end
 
       def workers=(quantity)
