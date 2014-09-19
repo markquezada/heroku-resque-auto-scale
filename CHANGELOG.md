@@ -1,7 +1,14 @@
+# Changelog  VERSION = '0.3.1'
+
+* bug fix
+  * we never can be scale down worker on safe mode
+
+[Fullcahnges](https://github.com/joel/heroku-resque-workers-scaler/pull/9)
+
 # Changelog  VERSION = '0.3.0'
-* feature 
+* feature
   * Add another mode for thresholds
-  
+
 * bug fix
   * fix size of working job count at ZERO instead of one
 
