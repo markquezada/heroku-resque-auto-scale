@@ -1,0 +1,6 @@
+bundle && HEROKU_API_KEY=your_api_key HEROKU_APP_NAME=your_app_name bundle exec rake spec
+gem build heroku-resque-workers-scaler.gemspec 
+git tag -a v0.1.6 -m 'version 0.1.6'
+git push --tags
+gem push heroku-resque-workers-scaler-0.1.6.gem 
+git push origin master
