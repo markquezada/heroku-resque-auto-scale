@@ -1,3 +1,10 @@
+# Changelog  VERSION = '0.3.2'
+
+* bug fix
+  * missing one return to avoid connection on forbidden mode.
+
+[Fullcahnges](https://github.com/joel/heroku-resque-workers-scaler/pull/10)
+
 # Changelog  VERSION = '0.3.1'
 
 * bug fix
