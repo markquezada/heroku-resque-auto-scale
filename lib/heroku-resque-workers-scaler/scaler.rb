@@ -29,6 +29,7 @@ module HerokuResqueAutoScale
       end
 
       def shut_down_workers!
+        return unless authorized?
         @@heroku.formation.update(app_name, worker_name, { quantity: 0 })
         nil
       end
