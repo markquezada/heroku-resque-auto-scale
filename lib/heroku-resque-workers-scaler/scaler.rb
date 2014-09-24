@@ -69,7 +69,8 @@ module HerokuResqueAutoScale
       private
 
       def authorized?
-        Config.environments.include? _environment
+        return false if (ENV['RESQUE_AUTO_SCALE'] && ENV['RESQUE_AUTO_SCALE'] == 'deactivate')
+        Config.environments.include?(_environment)
       end
 
       def _environment

@@ -101,6 +101,20 @@ When you ask heroku for scale down workers, heroku send SIGTERM and wait 4 secon
 ```
 	heroku config:add SAFE_MODE=true -a your_app_name
 ```
+
+#### Quick deactivation mode
+
+If you want turn off quickly this feature, you can make this
+```
+  heroku config:add RESQUE_AUTO_SCALE=deactivate -a your_app_name
+```
+
+for turn on just remove this config
+
+```
+  heroku config:remove RESQUE_AUTO_SCALE -a your_app_name
+```
+
 ## Contributing to heroku-resque-workers-scaler
 
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet

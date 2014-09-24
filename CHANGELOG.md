@@ -1,3 +1,8 @@
+# Changelog  VERSION = '0.3.4'
+
+* feature
+  * Add quick deactvation mode
+
 # Changelog  VERSION = '0.3.3'
 
 * feature
