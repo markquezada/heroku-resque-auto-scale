@@ -21,6 +21,8 @@ module HerokuResqueAutoScale
         if safe_mode?
           if scale_down? quantity
             return false unless all_jobs_have_been_processed?
+          else
+            return false if too_many_workers_asked?(quantity)
           end
         end
 
@@ -50,6 +52,10 @@ module HerokuResqueAutoScale
 
       def scale_down? quantity
         quantity < workers
+      end
+
+      def too_many_workers_asked? quantity
+        quantity >= Config.threshold
       end
 
       def safe_mode?
