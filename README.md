@@ -77,6 +77,7 @@ Exmple YAML file contents:
     environments:
       - production
     worker_name: resque
+    threshold: 100
 
 if you use `mode: :fit` the number of job is exactly the same of available worker, `:half` the number of worker is 1/2 of number of job in queue, and for `third` 1/3
 

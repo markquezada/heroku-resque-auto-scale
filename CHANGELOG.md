@@ -1,3 +1,10 @@
+# Changelog  VERSION = '0.3.3'
+
+* feature
+  * Add max of workers can you be ask
+
+[Fullcahnges](https://github.com/joel/heroku-resque-workers-scaler/pull/11)
+
 # Changelog  VERSION = '0.3.2'
 
 * bug fix
